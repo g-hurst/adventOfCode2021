@@ -1,6 +1,6 @@
 
 #gets the data from the text file
-with open("garrett\d1p1-input.txt", "r") as f:
+with open("garrett\day1\d1p1-input.txt", "r") as f:
     data = f.readlines()
 
 #cleans data
