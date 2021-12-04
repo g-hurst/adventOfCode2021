@@ -11,14 +11,9 @@ stillLines = True
 while stillLines:
     read = f.readline()
     if read:
-<<<<<<< HEAD
+
         #adds the read value to a list
         data.append(int(read, 2))
-=======
-        #adds the read value to a list as a string
-        s = str(read).replace('\n', '')
-        data.append(s)
->>>>>>> a40361dc1ed6b07e738aa0b10764e3d00b40ca16
         
         #converts the binary to an integer
         read = int(read, 2) 
@@ -34,17 +29,13 @@ while stillLines:
 
 gamma = 0
 epsilon = 0
-<<<<<<< HEAD
+
 #gets the binary value of the average bits, calculates gamma integer value, calculates compliment
-=======
-#gets the binary value of the average bits, calculates gammaing integer value, calculates compliment
->>>>>>> a40361dc1ed6b07e738aa0b10764e3d00b40ca16
 for i in range(len(ones)):
     ones[i] = ones[i] // (values // 2)
     gamma += ones[i] * 2**(len(ones) - i - 1)
     epsilon += (1 - ones[i]) * 2**(len(ones) - i - 1)
 
-<<<<<<< HEAD
 def removeElements(val, arr, bit):
     # currentBit = val & 2**(bit-1)
     # if bool(currentBit) == 1:
@@ -64,10 +55,6 @@ data.sort(reverse=True)
 
 val = removeElements(gamma, data, 12)
 print(val)
-=======
-data.sort(reverse=True)
-print(data)
->>>>>>> a40361dc1ed6b07e738aa0b10764e3d00b40ca16
 
 oxygen = 0
 co2    = 0
