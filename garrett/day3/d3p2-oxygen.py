@@ -26,6 +26,7 @@ while stillLines:
         values += 1
     else:
         stillLines = False
+f.close()
 
 gamma = 0
 epsilon = 0
@@ -37,25 +38,23 @@ for i in range(len(ones)):
     epsilon += (1 - ones[i]) * 2**(len(ones) - i - 1)
 
 def removeElements(val, arr, bit):
-    # currentBit = val & 2**(bit-1)
-    # if bool(currentBit) == 1:
-    #     arr = [x for x in arr if x & currentBit == 1]
-    # else:    
-    #     arr = [x for x in arr if x & currentBit == 1]
-    
-    print(arr)
+    #gets desired bit of the value to compare to
+    currentBit = (val // 2**(bit - 1)) % 2
 
+    #removes the elements from the array that do not contain the desired bit in the desired location
+    arr = [x for x in arr if ((x // 2**(bit - 1) ) % 2) == currentBit]
+    print(arr)
+    #recursive case
     if len(arr) > 1 and bit > 0:
         arr = removeElements(val, arr, bit - 1)
 
     return arr
 
-data.sort(reverse=True)
-
-
-val = removeElements(gamma, data, 12)
-print(val)
-
-oxygen = 0
-co2    = 0
+oxygen = removeElements(gamma, data, 12)[0]
+co2    = removeElements(epsilon, data, 12)[0]
+print(ones)
+for i in range(len(ones)):
+    ones[i] = 1 - ones[i]
+print(ones)
+print("g: %d   e: %d\nmultiplied: %d" % (gamma, epsilon, gamma * epsilon))
 print('o2: %d  co2: %d\nmultiplied: %d' % (oxygen, co2, oxygen * co2))

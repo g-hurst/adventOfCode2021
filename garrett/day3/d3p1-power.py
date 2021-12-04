@@ -20,6 +20,7 @@ while stillData:
         values += 1
     else:
         stillData = False
+f.close()
 
 gamma = 0
 epsilon = 0
