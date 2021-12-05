@@ -44,17 +44,22 @@ def removeElements(val, arr, bit):
     #removes the elements from the array that do not contain the desired bit in the desired location
     arr = [x for x in arr if ((x // 2**(bit - 1) ) % 2) == currentBit]
 
+
     #recursive case
     if len(arr) > 1 and bit > 0:
         arr = removeElements(val, arr, bit - 1)
 
     return arr
 
+
 oxygen = removeElements(ones, data, 12)[0]
+
 print(ones)
 for i in range(len(ones)):
     ones[i] = 1 - ones[i]
 print(ones)
+
 co2    = removeElements(ones, data, 12)[0]
+
 print("g: %d   e: %d\nmultiplied: %d" % (gamma, epsilon, gamma * epsilon))
 print('o2: %d  co2: %d\nmultiplied: %d' % (oxygen, co2, oxygen * co2))
