@@ -44,13 +44,11 @@ def removeElements(val, arr, bit):
     #removes the elements from the array that do not contain the desired bit in the desired location
     arr = [x for x in arr if ((x // 2**(bit - 1) ) % 2) == currentBit]
 
-
     #recursive case
     if len(arr) > 1 and bit > 0:
         arr = removeElements(val, arr, bit - 1)
 
     return arr
-
 
 oxygen = removeElements(ones, data, 12)[0]
 
