@@ -11,7 +11,6 @@ stillLines = True
 while stillLines:
     read = f.readline()
     if read:
-
         #adds the read value to a list
         data.append(int(read, 2))
         
@@ -30,7 +29,6 @@ f.close()
 
 gamma = 0
 epsilon = 0
-
 #gets the binary value of the average bits, calculates gamma integer value, calculates compliment
 for i in range(len(ones)):
     ones[i] = ones[i] // (values // 2)
@@ -52,12 +50,12 @@ def removeElements(val, arr, bit):
 
 oxygen = removeElements(ones, data, 12)[0]
 
-print(ones)
+#print(ones)
 for i in range(len(ones)):
     ones[i] = 1 - ones[i]
-print(ones)
+#print(ones)
 
-co2    = removeElements(ones, data, 12)[0]
+co2 = removeElements(ones, data, 12)[0]
 
 print("g: %d   e: %d\nmultiplied: %d" % (gamma, epsilon, gamma * epsilon))
 print('o2: %d  co2: %d\nmultiplied: %d' % (oxygen, co2, oxygen * co2))

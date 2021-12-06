@@ -1,5 +1,4 @@
 import numpy as np
-from copy import copy
 
 class board():
     def __init__(self, data):
