@@ -32,7 +32,7 @@ def plot(line, chart):
     y = abs(line.start[1] - line.end[1])
 
     #only consiters the line if it horizontal or vertical
-    if x != 0 and y != 0: return
+    if x == y: return
 
     #horozontal line
     if x > 0:

@@ -26,13 +26,41 @@ for l in lines:
     if l.end[1]   > maxY: maxY = l.end[1]
 lineChart = np.zeros((maxY + 1, maxX + 1))
 
+def plotDiag(x, line, lineChart):
+    #print('x: %d (%d, %d) -> (%d, %d)' % (x, line.start[0],line.start[1],line.end[0],line.end[1]))
+    #line points up and left
+    if line.start[0] > line.end[0] and line.start[1] > line.end[1]:
+        #print('up and left')
+        for i in range(x + 1):
+            lineChart[line.end[1] + i][line.end[0] + i] += 1
+    
+    #line points up and right
+    elif line.end[0] > line.start[0] and line.start[1] > line.end[1]:
+        #print('up and right')
+        for i in range(x + 1):
+            lineChart[line.end[1] + i][line.start[0] + i] += 1
+
+    #line points down and left
+    elif line.start[0] > line.end[0] and line.end[1] > line.start[1]:
+        #print('down and left')
+        for i in range(x + 1):
+            lineChart[line.start[1] + i][line.end[0] + i] += 1
+    
+    #line points down and right
+    else:
+        #print('down and right')
+        for i in range(x + 1):
+            lineChart[line.start[1] + i][line.start[0] + i] += 1
+
 def plot(line, chart):
     #gets change in x and y
     x = abs(line.start[0] - line.end[0])
     y = abs(line.start[1] - line.end[1])
 
-    #only consiters the line if it horizontal or vertical
-    if x != 0 and y != 0: return
+    #plots the diaganal line and returns
+    if x == y: 
+        plotDiag(x, line, lineChart)
+        return
 
     #horozontal line
     if x > 0:
