@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+#gets the data
 positions = [p.split(',') for p in open('garrett\day7\d7-input.txt', 'r')]
 positions = list(map(int, positions.pop(0)))
 
+#creates a histogram for visualization
 plt.hist(positions, bins=100)
 plt.xlabel('Submarine Position')
 plt.ylabel('Number of Ships')
