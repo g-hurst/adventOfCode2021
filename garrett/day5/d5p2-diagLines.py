@@ -32,19 +32,19 @@ def plotDiag(x, line, lineChart):
     if line.start[0] > line.end[0] and line.start[1] > line.end[1]:
         #print('up and left')
         for i in range(x + 1):
-            lineChart[line.end[1]][line.end[0]] += 1
+            lineChart[line.end[1] + i][line.end[0] + i] += 1
     
     #line points up and right
     elif line.end[0] > line.start[0] and line.start[1] > line.end[1]:
         #print('up and right')
         for i in range(x + 1):
-            lineChart[line.end[1]][line.start[0]] += 1
+            lineChart[line.end[1] + i][line.start[0] + i] += 1
 
     #line points down and left
     elif line.start[0] > line.end[0] and line.end[1] > line.start[1]:
         #print('down and left')
         for i in range(x + 1):
-            lineChart[line.start[1]][line.end[0]] += 1
+            lineChart[line.start[1] + i][line.end[0] + i] += 1
     
     #line points down and right
     else:
