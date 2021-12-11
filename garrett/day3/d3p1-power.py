@@ -1,4 +1,3 @@
-  
 f = open("garrett\day3\d3-input.txt", "r")
 
 ones = [0] * 12 #empty list to store the amount of ones
