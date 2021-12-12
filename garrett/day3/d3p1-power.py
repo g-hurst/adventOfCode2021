@@ -1,5 +1,4 @@
-  
-f = open("garrett\day3\d3p1-input.txt", "r")
+f = open("garrett\day3\d3-input.txt", "r")
 
 ones = [0] * 12 #empty list to store the amount of ones
 values = 0      #keeps track of how many elements have been counted

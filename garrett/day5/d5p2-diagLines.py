@@ -5,7 +5,7 @@ class Line():
         self.start = start
         self.end = end
 
-with open('garrett\day5\d5p1-input.txt', 'r') as f:
+with open('garrett\day5\d5-input.txt', 'r') as f:
     data = f.readlines()
 
 data = [x.split() for x in data]
