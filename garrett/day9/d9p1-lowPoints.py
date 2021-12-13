@@ -4,11 +4,11 @@ risk = 0
 for y in range(len(topMap)):
     for x in range(len(topMap[y])):
         lowCount = 0
-        #checks east
+        #checks west
         if x == 0: lowCount += 1
         elif topMap[y][x] < topMap[y][x - 1]: lowCount += 1
 
-        #checks west
+        #checks east
         if x == len(topMap[y]) - 1: lowCount += 1
         elif topMap[y][x] < topMap[y][x + 1]: lowCount += 1
 
