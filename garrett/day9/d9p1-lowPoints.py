@@ -1,5 +1,3 @@
-import numpy as np
-
 topMap = [x.rstrip('\n') for x in open('garrett\day9\d9-input.txt', 'r')]
 
 risk = 0
