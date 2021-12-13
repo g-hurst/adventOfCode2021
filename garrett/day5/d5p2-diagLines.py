@@ -1,97 +1,28 @@
-import numpy as np
+from collections import Counter
 
-class Line():
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
+data = [x.rstrip('\n').split(' -> ') for x in open('garrett\day5\d5-input.txt', 'r')]
 
-with open('garrett\day5\d5-input.txt', 'r') as f:
-    data = f.readlines()
+points = []
 
-data = [x.split() for x in data]
+for line in data:
+    #gets the start and end values
+    x1, y1 = list(map(int, (line[0].split(','))))
+    x2, y2 = list(map(int, (line[1].split(','))))
 
-#creates an array of line objects
-lines = []
-for x in data:
-    point1 = list(map(int, x[0].split(',')))
-    point2 = list(map(int, x[2].split(',')))
-    lines.append(Line(point1, point2))
+    #stores the points of the horizontal and vertical lines in a list
+    if x1 == x2 or y1 == y2:
+        for x in range(min(x1, x2), max(x1, x2) + 1):
+            for y in range(min(y1, y2), max(y1, y2) + 1):
+                points.append((x, y))
 
-#gets the largest values and then creates an array of that size
-maxX, maxY = 0, 0
-for l in lines:
-    if l.start[0] > maxX: maxX = l.start[0]
-    if l.end[0]   > maxX: maxX = l.end[0]
-    if l.start[1] > maxY: maxY = l.start[1]
-    if l.end[1]   > maxY: maxY = l.end[1]
-lineChart = np.zeros((maxY + 1, maxX + 1))
-
-def plotDiag(x, line, lineChart):
-    #print('x: %d (%d, %d) -> (%d, %d)' % (x, line.start[0],line.start[1],line.end[0],line.end[1]))
-    #line points up and left
-    if line.start[0] > line.end[0] and line.start[1] > line.end[1]:
-        #print('up and left')
-        for i in range(x + 1):
-            lineChart[line.end[1] + i][line.end[0] + i] += 1
-    
-    #line points up and right
-    elif line.end[0] > line.start[0] and line.start[1] > line.end[1]:
-        #print('up and right')
-        for i in range(x + 1):
-            lineChart[line.end[1] + i][line.start[0] + i] += 1
-
-    #line points down and left
-    elif line.start[0] > line.end[0] and line.end[1] > line.start[1]:
-        #print('down and left')
-        for i in range(x + 1):
-            lineChart[line.start[1] + i][line.end[0] + i] += 1
-    
-    #line points down and right
+    #stores the points of the diagonal lines in a list
     else:
-        #print('down and right')
-        for i in range(x + 1):
-            lineChart[line.start[1] + i][line.start[0] + i] += 1
-
-def plot(line, chart):
-    #gets change in x and y
-    x = abs(line.start[0] - line.end[0])
-    y = abs(line.start[1] - line.end[1])
-
-    #plots the diaganal line and returns
-    if x == y: 
-        plotDiag(x, line, lineChart)
-        return
-
-    #horozontal line
-    if x > 0:
-        #line goes from right to left
-        if line.start[0] > line.end[0]:
-            for i in range(x + 1):
-                chart[line.start[1]][line.end[0] + i] += 1
-        #line goes from left to right
-        else:
-            for i in range(x + 1):
-                chart[line.start[1]][line.start[0] + i] += 1
-    
-    #vertical line
-    else:
-        #line goes from bottom to top
-        if line.start[1] > line.end[1]:
-            for i in range(y + 1):
-                chart[line.end[1] + i][line.start[0]] += 1
-        #line goes from top to bottom
-        else:
-            for i in range(y + 1):
-                chart[line.start[1] + i][line.start[0]] += 1
-
-#plots all the lines
-for line in lines:
-    plot(line, lineChart)
-
-#counts the number of points with overlapping lines
-count = 0
-for i in range(len(lineChart)):
-    for j in range(len(lineChart[i])):
-        if lineChart[i][j] > 1: count += 1
-
-print(count)
+        xinc = 1 if x1 < x2 else -1
+        yinc = 1 if y1 < y2 else -1
+        y = y1
+        for x in range(x1, x2 + xinc, xinc):
+            points.append((x, y))
+            y += yinc
+        
+overlaps = len([pt for pt in Counter(points).values() if pt > 1])
+print(overlaps)
