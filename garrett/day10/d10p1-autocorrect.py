@@ -43,6 +43,6 @@ for line in finalStacks:
         sum += pointVals[line[i]]
     points.append(sum)
 
+#prints middle value
 middle = int(np.median(points))
-
 print(f'total points is {middle}')
