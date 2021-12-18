@@ -15,7 +15,7 @@ for line in data:
         if c in pairs:
             stack.append(c)
         
-        #removes opening bracket from the stack if the closing matches. Else, appemds illegal char
+        #removes opening bracket from the stack if the closing matches. Else, appends illegal char
         else:
             if pairs[stack[-1]] == c: stack.pop(-1)
             else: 
