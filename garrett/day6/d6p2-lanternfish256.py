@@ -1,49 +1,21 @@
-with open('garrett\day6\d6-input.txt', 'r') as f:
-    data = f.readline()
+from collections import Counter
 
-fishTimes = list(map(int, data.split(',')))
+#gets the data
+fishTimes = list(map(int, open('garrett\day6\d6-input.txt', 'r').readline().split(','))) 
 
-#calculates the amount of fish produced from a single fish after a given number of days
-def calcSeries(start, stop):
-    times = [start]
-    for i in range(stop):
-        print('day', i, 'fish', len(times))
-        for j in range(len(times)):
-            if (times[j] == 0):
-                times[j] = 6
-                times.append(8)
-            else:
-                times[j] -= 1
-        
-    return len(times)
 
-def calcFish(startTime, stop):
-    fish = 0
-    stop -= startTime + 1
+timers = Counter({timer:0 for timer in range(10)}) #creates an empty counter object with all the times
+fishes = Counter(fishTimes)                        #counts the fish times
+fishes.update(timers)                              #updates with the empty values
 
-    if stop >= 0:
-        if fish > 1:
-            fish += 1
-            fish += calcFish(8, stop)
-            fish += calcFish(6, stop)
-        else:
-            fish += 1
-            fish += calcFish(8, stop)
-            fish += calcFish(6, stop)
+for i in range(256):
+    #creates more time eight fish and time six fish from the ones that are at zero
+    fishes[7] += fishes.get(0, 0)
+    fishes[9] += fishes.get(0, 0)
 
-    return fish
+    #shifts the fish down a time
+    fishes = {fish: fishes.get(fish + 1, 0) for fish in fishes}
 
-#stores the amount of fish produced for for each start time
-n = 80
-times = []
-for t in range(1, 6):
-    print('calculating start time ', t)
-    times.append(calcFish(t, n))
-    print(times[t - 1])
-
-#calculates the total number of fish
-fishCount = 0
-for f in fishTimes:
-    fishCount += times[f - 1]
-
-print(fishCount)
+#sums the fish
+total = sum(fishes.values())
+print('total fish:', total)
