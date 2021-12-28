@@ -10,6 +10,7 @@ with open('garrett\day14\d14-input.txt', 'r') as f:
     for x in f.readlines():
         pairs[x.split(' -> ')[0]] = x.split(' -> ')[1].rstrip('\n')
 
+#loops through ten polymer steps
 for _ in range(10):
     stack = []
     for element in polymer:
@@ -21,6 +22,7 @@ for _ in range(10):
 
     polymer = stack
  
+#counts the elements and gets max and min
 count = Counter(polymer)
 minimum = min(count, key=count.get)
 maximum = max(count, key=count.get)
